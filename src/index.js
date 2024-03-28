@@ -10,14 +10,18 @@ dotenv.config({
 })
 
 
-connectDB();
-
-
-
-
-
-
-
+connectDB()
+.then(()=>{
+    app.on("error", (error)=>{
+        console.log("ERROR :",error);
+    })
+    app.listen(process.env.PORT, ()=>{
+        console.log(`Process running on ${process.env.PORT}`);
+    })
+})
+.catch((err)=>{
+    console.log("connection failed :" ,err);
+})
 
 
 
