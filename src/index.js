@@ -3,27 +3,23 @@ import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js";
 import express from "express";
 import connectDB from "./db/index.js";
-const app = express();
-
+import { app } from "./app.js";
 dotenv.config({
-    path: "./env"
-})
-
+  path: "./env",
+});
 
 connectDB()
-.then(()=>{
-    app.on("error", (error)=>{
-        console.log("ERROR :",error);
-    })
-    app.listen(process.env.PORT, ()=>{
-        console.log(`Process running on ${process.env.PORT}`);
-    })
-})
-.catch((err)=>{
-    console.log("connection failed :" ,err);
-})
-
-
+  .then(() => {
+    app.on("error", (error) => {
+      console.log("ERROR :", error);
+    });
+    app.listen(process.env.PORT, () => {
+      console.log(`Process running on ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("connection failed :", err);
+  });
 
 // (async () => {
 //   try {
